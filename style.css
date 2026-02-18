@@ -1,0 +1,133 @@
+/* Import smooth Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transition: background 0.5s ease;
+}
+
+/* Win Background */
+body.win {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+}
+
+/* Lose Background */
+body.lose {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+/* Glassmorphism Card */
+.game-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    color: white;
+    animation: fadeIn 1s ease;
+}
+
+/* Title */
+h1 {
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Hint */
+#hint {
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* Input Styling */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
+}
+
+input:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ffffff;
+}
+
+/* Buttons */
+button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Submit Button */
+#submitBtn {
+    background: #00c9a7;
+    color: white;
+}
+
+#submitBtn:hover {
+    background: #00b894;
+    transform: translateY(-3px);
+}
+
+/* Restart Button */
+#restartBtn {
+    background: #ff7675;
+    color: white;
+}
+
+#restartBtn:hover {
+    background: #e84393;
+    transform: translateY(-3px);
+}
+
+/* Message */
+#message {
+    margin-top: 20px;
+    font-weight: 600;
+    min-height: 30px;
+    transition: 0.3s;
+}
+
+/* Attempts */
+#attempts {
+    margin-top: 8px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
