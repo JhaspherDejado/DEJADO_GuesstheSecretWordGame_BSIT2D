@@ -1,4 +1,3 @@
-// Array of secret words
 const words = [ "spoon",
                 "fork",
                 "knife",
@@ -79,16 +78,14 @@ else {
 
 submitBtn.addEventListener("click", checkGuess);
 
-// Allow Enter key to submit
 guessInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         checkGuess();
     }
 });
 
-// Restart button
 restartBtn.addEventListener("click", startGame);
 
-// Initialize game on page load
 startGame();
+
 
