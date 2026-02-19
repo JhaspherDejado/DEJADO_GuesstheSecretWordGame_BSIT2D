@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>For You ❤️</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #ffb3c6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  /* Desktop blocker */
+  .desktop-warning {
+    display: none;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 20px;
+  }
+
+  .container {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(14px);
+    padding: 30px 20px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  }
+
+  h1 {
+    font-size: 1.9em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.05em;
+    margin-bottom: 25px;
+  }
+
+  .buttons {
+    position: relative;
+    height: 160px;
+  }
+
+  button {
+    border: none;
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.25s ease;
+  }
+
+  #yesBtn {
+    background: #ff1e56;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+  }
+
+  #noBtn {
+    background: white;
+    color: #ff1e56;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+  }
+
+  #message {
+    display: none;
+    font-size: 1.15em;
+    margin-top: 20px;
+  }
+
+  /* Hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 18px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(1.6); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="desktop-warning">
+  📱 This surprise only works on a cellphone.<br>
+  Please open it on your phone 💕
+</div>
+
+<div class="container">
+  <h1>Will You Be My Valentine? 💖</h1>
+  <p>
+    No pressure… but your phone knows the right answer 😏
+    Try to Press many times the Button that saying "No" to see what happen:
+  </p>
+
+  <div class="buttons">
+    <button id="noBtn">NO 🙃</button>
+    <button id="yesBtn">YES 💕</button>
+  </div>
+
+  <div id="message"></div>
+</div>
+
+<script>
+  // Detect desktop
+  if (window.innerWidth > 768) {
+    document.querySelector(".container").style.display = "none";
+    document.querySelector(".desktop-warning").style.display = "block";
+  }
+
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const message = document.getElementById("message");
+
+  let yesScale = 1;
+
+  function vibrate(ms = 40) {
+    if (navigator.vibrate) navigator.vibrate(ms);
+  }
+
+  function moveNoButton() {
+    vibrate(30);
+
+    const x = Math.random() * 220 - 110;
+    const y = Math.random() * 120 - 60;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+    yesScale += 0.08;
+    yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
+  }
+
+  noBtn.addEventListener("touchstart", moveNoButton);
+  noBtn.addEventListener("click", moveNoButton);
+
+  yesBtn.addEventListener("click", () => {
+    vibrate([60, 40, 60]);
+
+    message.style.display = "block";
+    message.innerHTML = `
+      💖 YOU SAID YES 💖<br><br>
+      I knew it 😍<br>
+      Thank you Aki HEHEHE.<br><br>
+      Happy Valentine’s Day 🌹
+    `;
+
+    noBtn.style.display = "none";
+    yesBtn.style.transform = "translateX(-50%) scale(1.2)";
+  });
+
+  // Floating hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 22 + 14 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 350);
+</script>
+
+</body>
+</html>
